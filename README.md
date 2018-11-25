@@ -3,7 +3,7 @@ Interactive command line tool for creating a music playlist
 
 ## Requirements 
 
-The following command line tool is written Ruby. Please download the latest Ruby version. 
+The following command line tool is written in Ruby. Please download the latest Ruby version. 
 
 Please run the following command in your terminal to get started. 
 
@@ -17,4 +17,8 @@ Upon completion of download, please go ahead and start the interactive command l
 ./music 
 ```
 
+In order to run the test suite, run the following command in the root directory of the repo.
 
+```
+rspec
+```
