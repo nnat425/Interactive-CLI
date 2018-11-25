@@ -9,7 +9,7 @@ while (command = gets.chomp) != 'quit'
 
   split_command_array = command.scan(/(?:\w|"[^"]*")+/)
 
-  # begin 
+   begin 
     if split_command_array[0] == 'add' &&  !split_command_array[1].undump.nil? &&  !split_command_array[2].undump.nil? && split_command_array.length == 3
       puts playlist.add_song(Song.new(split_command_array[1],split_command_array[2]))
     elsif split_command_array[0] == 'show' && split_command_array[1] == 'all' && split_command_array.length == 2
@@ -25,9 +25,9 @@ while (command = gets.chomp) != 'quit'
     else 
       ErrorChecker.command_validation_check(split_command_array[0])
     end 
-  # rescue
-  #   puts "Please put quotes around the song title/artist!"
-  # end 
+  rescue
+    puts "Please put quotes around the song title/artist!"
+  end 
 end
 
 
