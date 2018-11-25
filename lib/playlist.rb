@@ -7,14 +7,14 @@ attr_reader :collection
   end 
 
   def add_song(song)
-  	return if does_song_exist_in_playlist(song) == true 
+  	return "Cannot add this song. There is a song with the same title already! Please add a song with a different title!" if does_song_exist_in_playlist(song) == true 
   	@collection << song 
   	return "Added " + song.title + " by " + song.artist.delete_prefix('"').delete_suffix('"')
   end 
 
   def list_all_songs_and_artists(unplayed_or_played_song, artist)
-    return if is_playlist_empty? 
-    return if is_there_unplayed_songs? if unplayed_or_played_song == true  
+    return "There are no songs in the playlist! Please add some songs!"  if is_playlist_empty? 
+    return "There aren't any unplayed songs!" if is_there_unplayed_songs? && unplayed_or_played_song == true  
     return "There isn't any songs by this artist!" if is_there_song_by_artist?(artist) == false && artist != String 
 
     output_string = ''
@@ -44,19 +44,16 @@ attr_reader :collection
   def does_song_exist_in_playlist(potential_newly_created_song)
    duplicate_song_array =  @collection.select { |song| song.title.downcase == potential_newly_created_song.title.downcase }
      if !duplicate_song_array.empty?
-       puts "Cannot add this song. There is a song with the same title already! Please add a song with a different title!"
        return true 
      end 
   end 
 
   def is_playlist_empty?
-  	puts "There are no songs in the playlist! Please add some songs!" if @collection.empty?
-  	return true if @collection.empty?
+    return @collection.empty?
   end 
 
   def is_there_unplayed_songs? 
     unplayed_songs = @collection.all? { |song| song.isPlayed == true }
-    puts "There aren't any unplayed songs!" if unplayed_songs == true 
     return true if unplayed_songs == true
   end 
 
