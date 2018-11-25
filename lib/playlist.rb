@@ -16,6 +16,7 @@ attr_reader :collection
     return "There are no songs in the playlist! Please add some songs!"  if is_playlist_empty? 
     return "There aren't any unplayed songs!" if is_there_unplayed_songs? && unplayed_or_played_song == true  
     return "There isn't any songs by this artist!" if is_there_song_by_artist?(artist) == false && artist != String 
+    return "All songs by this artist have been played" if have_alls_song_by_artist_been_played?(artist) == true && artist != String
 
     output_string = ''
   	@collection.select do |song| 
@@ -61,5 +62,12 @@ attr_reader :collection
     does_artist_exist = @collection.any? { |song| artist == song.artist }
     return false if does_artist_exist == false 
   end  
+
+  def have_alls_song_by_artist_been_played?(artist)
+     @collection.each do |song| 
+       return false  if artist == song.artist && song.isPlayed != true
+      end 
+       return true  
+  end 
 
 end 

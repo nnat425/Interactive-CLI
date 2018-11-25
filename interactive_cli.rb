@@ -5,7 +5,7 @@ require './helper/error_checker'
 puts 'Welcome to your music collection!'
 playlist = Playlist.new 
 
-while (command = gets.chomp) != 'quit'
+while (command = gets.chomp.strip) != 'quit'
 
   split_command_array = command.scan(/(?:\w|"[^"]*")+/)
 
