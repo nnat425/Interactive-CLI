@@ -64,8 +64,4 @@ it "there aren't any unplayed songs left" do
    expect(@playlist.list_all_songs_and_artists(true,String)).to eq("There aren't any unplayed songs!")
 end 
 
-it "there are no more unplayed songs left from this specific artist" do 
-  expect(@playlist.list_all_songs_and_artists(true,"Beastie Boys")).to eq("There aren't any unplayed songs!")
-end 
-
 end 
